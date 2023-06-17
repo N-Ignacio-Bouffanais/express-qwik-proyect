@@ -4,18 +4,19 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 export default component$(() => {
   return (
     <>
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
+      <h1>Welcome 👋</h1>
+
+      <button onClick$={async ()=>{
+        const response =  await fetch('/api')
+        const data =  response.json();
+        console.log(data)
+      }}>Click me</button>
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'Full Stack Pro',
   meta: [
     {
       name: 'description',
