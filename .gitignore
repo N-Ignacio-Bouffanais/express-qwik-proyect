@@ -1,0 +1,8 @@
+node_modules
+.env
+apps/backend/dist
+
+#from turbo documentation
+.turbo
+build/**
+dist/**
