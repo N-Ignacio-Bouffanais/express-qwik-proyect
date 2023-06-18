@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "start": "node apps/backend/dist/main.js"
+    "start": "node apps/server/dist/app.js"
   },
   "keywords": [],
   "author": "Nicolas Bouffanais",
