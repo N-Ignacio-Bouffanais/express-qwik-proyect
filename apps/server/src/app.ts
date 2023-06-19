@@ -2,8 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import path from "path";
 import "dotenv/config";
-import { users_router } from "./routes/users";
-
+import { indexRouter } from "./api/index.router";
 
 const PORT = process.env.PORT || 3001;
 
@@ -13,7 +12,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../..', 'client', 'dist')))
 
-app.use("/api", users_router);
+app.use("/api", indexRouter);
 
 
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
