@@ -10,15 +10,11 @@ datasource db {
 
 model User{
   id String    @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   email String  @unique
   hash String
 
   FirstName String?
   LastName String?
-  Rut String?
 
   tasks Task[]
 
@@ -26,8 +22,8 @@ model User{
 
 model Task{
   id String    @id @default(auto()) @map("_id") @db.ObjectId
-  StartDate DateTime 
-  EndDate DateTime
+  StartDate DateTime?
+  EndDate DateTime?
   ExtraData String?
 
   userId       String     @db.ObjectId

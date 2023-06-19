@@ -25,7 +25,7 @@ export const validate =
         // extract token from header
         const header = req.header("Authorization");
         if (!header) {
-          return res.status(401).send("No authorization header found"!);
+          return res.status(401).send("No se encontro ninguna autenticacion en el header"!);
         }
         const token = header.replace("Bearer ", "");
         if (!token) {
@@ -43,7 +43,7 @@ export const validate =
         if (user === null) {
           return res
             .status(404)
-            .send(`User with id ${verifiedPayload.id} not found!`);
+            .send(`Usuario con el id ${verifiedPayload.id} no encontrado!`);
         }
 
         // attach user to request object

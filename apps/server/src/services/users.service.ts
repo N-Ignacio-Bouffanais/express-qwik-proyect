@@ -1,38 +1,47 @@
-import { prisma } from "../db/client";
 import { User } from "@prisma/client";
 import * as argon2 from "argon2";
+import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
+import { AuthorizedRequest } from "api/middleware";
+const prisma = new PrismaClient();
 
-const createUser = async ({email, hash, LastName, FirstName}: User) => {
+const updateUser = async (req: Request, res: Response) => {
   try {
-    const user = await prisma.user.findFirst({
-      where: {
-        email,
-      },
-    });
-    if (user) return "El usuario ya existe";
-
+    const { LastName, FirstName, email, hash } = req.body as User;
     const hashedPassword = await argon2.hash(hash);
-    return await prisma.user.create({
-      data:{
-        email:email,
+    const user = (req as AuthorizedRequest).user;
+    const result = await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        email,
+        FirstName,
         hash: hashedPassword,
-        FirstName: FirstName,
-        LastName: LastName,
+        LastName,
       }
-      
-    })
+    });
+    return res.status(200).send(result);
   } catch (e) {
-    
+    console.log(e);
+    return res.status(500).json({
+      message: "Error de servidor !",
+    });
   }
 };
 
-const getUsers = async () => {}
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body as User;
+    
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: "Error de servidor !",
+    });
+  }
+};
+
+const getUsers = async () => {};
 
 const getUser = async () => {};
 
-const updateUser = async () => {};
-
-const deleteUser = async () => {};
-
-
-export { createUser, getUsers, getUser, updateUser, deleteUser };
+export { getUsers, getUser, updateUser, deleteUser };

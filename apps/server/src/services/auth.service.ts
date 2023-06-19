@@ -32,7 +32,7 @@ export const SignIn = async (req: Request, res:Response) => {
       { id: user.id, username: user.email },
       process.env.jwtSecret as string
     );
-    return res.status(201).json({
+    return res.status(200).json({
       message: `Bienvenido de vuelta ${user.email}`,
       token,
     });
@@ -68,11 +68,14 @@ export const SignUp = async (req: Request, res: Response) => {
                 LastName,
             }
         })
+        return res
+          .status(201)
+          .json({ message: `Bienvenido ${newUser.FirstName}` });
 
     } catch (e) {
         console.log(e);
         return res.status(500).json({
-          mrssage: "Error de servidor !",
+          message: "Error de servidor !",
         });
     }
 };
