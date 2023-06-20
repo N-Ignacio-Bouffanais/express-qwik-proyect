@@ -2,9 +2,7 @@ import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { User } from "@prisma/client";
-
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { prisma } from "../db/client";
 
 export const SignIn = async (req: Request, res:Response) => {
   try {
@@ -33,7 +31,7 @@ export const SignIn = async (req: Request, res:Response) => {
       process.env.jwtSecret as string
     );
     return res.status(200).json({
-      message: `Bienvenido de vuelta ${user.email}`,
+      message: `Bienvenido de vuelta ${user.FirstName}`,
       token,
     });
 

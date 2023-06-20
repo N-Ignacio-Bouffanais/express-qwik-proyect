@@ -4,8 +4,6 @@ import { userRouter } from "./user.router";
 
 export const indexRouter = Router();
 
-// indexRouter.use("/user", userRouter);
-// indexRouter.use("/auth", authRouter);
 
 indexRouter.use("/", userRouter);
 indexRouter.use("/", authRouter);
