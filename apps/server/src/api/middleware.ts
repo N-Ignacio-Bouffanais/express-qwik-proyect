@@ -29,7 +29,7 @@ export const validate =
         }
         const token = header.replace("Bearer ", "");
         if (!token) {
-          return res.status(401).send("Invalid authorization header!");
+          return res.status(401).send("Autorizacion invalida header!");
         }
 
         // verify and decode jwt token

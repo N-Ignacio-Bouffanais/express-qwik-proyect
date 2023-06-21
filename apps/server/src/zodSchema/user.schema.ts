@@ -1,45 +1,45 @@
 import { z } from "zod";
 
 export const userCreate = z.object({
-  email: z.string().nonempty("Email is required").trim().email({
-    message: "Write a correct email",
+  email: z.string().nonempty("El correo es requerido").trim().email({
+    message: "Ingrese un correo valido",
   }),
   hash: z
     .string()
     .trim()
-    .nonempty("Password is required")
-    .min(6, "Password too short"),
+    .nonempty("Contraseña no puede estar en blanco")
+    .min(6, "Contraseña demasiado corta"),
   FirstName: z
     .string()
     .trim()
-    .nonempty("First Name is required")
-    .min(3, "First Name is too short"),
+    .nonempty("Nombre de usuario no puede estar en blanco")
+    .min(3, "Nombre de usuario demasiado corto"),
   LastName: z
     .string()
     .trim()
-    .nonempty("Last Name is required")
-    .min(3, "Last Name is too short"),
+    .nonempty("Apellido no puede estar en blanco")
+    .min(3, "Apellido demasiado corto"),
 });
 
 export const userUpdate = z.object({
   email: z.string().nonempty("Email is required").trim().email({
-    message: "Write a correct email",
+    message: "Ingrese un correo valido",
   }),
   hash: z
     .string()
     .trim()
-    .nonempty("Password is required")
-    .min(6, "Password too short"),
+    .nonempty("Contraseña no puede estar en blanco")
+    .min(6, "Contraseña demasiado corta"),
   FirstName: z
     .string()
     .trim()
-    .nonempty("First Name is required")
-    .min(3, "First Name is too short"),
+    .nonempty("Nombre de usuario no puede estar en blanco")
+    .min(3, "Nombre de usuario demasiado corto"),
   LastName: z
     .string()
     .trim()
-    .nonempty("Last Name is required")
-    .min(3, "Last Name is too short"),
+    .nonempty("Apellido no puede estar en blanco")
+    .min(3, "Apellido demasiado corto"),
 });
 
 export const userReturn = userUpdate.omit({ hash: true });

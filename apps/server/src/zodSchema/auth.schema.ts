@@ -1,13 +1,13 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  email: z.string().nonempty("Email is required").email({
-    message: "Write a correct email",
+  email: z.string().nonempty("El correo es  requerido").email({
+    message: "Ingrese un correo valido",
   }),
   hash: z
     .string()
-    .nonempty("Password is required")
-    .min(6, "Password too short"),
+    .nonempty("La contraseña es requerida")
+    .min(6, "Contraseña demasiado corta"),
 });
 
 export const jwtPayloadSchema = z.object({
