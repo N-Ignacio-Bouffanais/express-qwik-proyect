@@ -4,13 +4,8 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 export default component$(() => {
   return (
     <>
-      <h1>Welcome 👋</h1>
+      <h1 class='text-3xl font-bold underline'>Welcome 👋</h1>
 
-      <button onClick$={async ()=>{
-        const response =  await fetch('/api')
-        const data =  response.json();
-        console.log(data)
-      }}>Click me</button>
     </>
   );
 });
