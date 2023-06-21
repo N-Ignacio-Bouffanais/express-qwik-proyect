@@ -6,6 +6,9 @@
   "workspaces": [
     "apps/*"
   ],
+  "prisma":{
+    "schema": "apps/server/prisma/schema.prisma"
+  },
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -15,6 +18,7 @@
   "author": "Nicolas Bouffanais",
   "license": "ISC",
   "devDependencies": {
+    "dotenv-cli": "^7.2.1",
     "turbo": "^1.10.3"
   }
 }

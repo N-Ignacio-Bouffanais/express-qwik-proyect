@@ -30,13 +30,13 @@ const updateUser = async (req: Request, res: Response) => {
 
 const getUser = async (req: Request, res: Response) => {
   try {
-    const { userId } = req.params;
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
+    const user = (req as AuthorizedRequest).user;
+    const result = await prisma.user.findUnique({
+      where: { id: user.id },
     });
 
     // check if user exists
-    if (!user) {
+    if (!result) {
       return res.status(400).json({
         message: "Ese Usuario no existe!",
       });
@@ -75,17 +75,17 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-const getUsers = async (req: Request, res: Response) => {
-  try {
-    // Only select the `id`
-    const userWithIdOnly = await prisma.user.findMany({ select: { id: true } });
-    return userWithIdOnly
-  } catch (e) {
-    return res.status(500).json({
-      message: "Error de servidor !",
-    });
-  }
-};
+// const getUsers = async (req: Request, res: Response) => {
+//   try {
+//     // Only select the `id`
+//     const userWithIdOnly = await prisma.user.findMany({ select: { id: true } });
+//     return userWithIdOnly
+//   } catch (e) {
+//     return res.status(500).json({
+//       message: "Error de servidor !",
+//     });
+//   }
+// };
 
 
-export { getUsers, getUser, updateUser, deleteUser };
+export { getUser, updateUser, deleteUser };
